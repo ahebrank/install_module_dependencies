@@ -1,0 +1,17 @@
+{
+  "name": "install_module_dependencies",
+  "version": "1.0.0",
+  "description": "Find and install module dependencies that aren't modules",
+  "bin": {
+    "install_module_dependencies": "./index.js"
+  },
+  "author": "ahebrank",
+  "license": "MIT",
+  "homepage": "https://github.com/ahebrank/install_module_dependencies",
+  "repository": "ahebrank/install_module_dependencies",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "glob": "^7.1.1",
+    "minimist": "^1.2.0"
+  }
+}
