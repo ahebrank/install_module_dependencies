@@ -30,7 +30,14 @@ function findDependencies(json) {
 
 function installPackages(packages) {
   var cmd = 'composer --working-dir=' + root + ' require ' + packages.join(' ');
-  exec(cmd);
+  exec(cmd, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  });
 }
 
 var packages = [];
@@ -51,13 +58,6 @@ glob(moduleDir + '/**/composer.json', {}, (err, files) => {
   });
   
   if (packages) {
-    installPackages(packages, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-      }
-      console.log(`stdout: ${stdout}`);
-      console.log(`stderr: ${stderr}`);
-    });
+    installPackages(packages);
   }
 });
