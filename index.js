@@ -44,18 +44,19 @@ function removeGit() {
   var composerdir = root + '/vendor';
   glob(composerdir + '/**/.git', {}, (err, files) => {
     files.forEach((fn) => {
-     deleteFolderRecurise(fn);
+     deleteFolderRecursive(fn);
     });
   });
 }
 
 function deleteFolderRecursive(path) {
-  if( fs.existsSync(path) ) {
-    fs.readdirSync(path).forEach(function(file,index){
-      var curPath = path + "/" + file;
-      if(fs.lstatSync(curPath).isDirectory()) { // recurse
+  if (fs.existsSync(path)) {
+    fs.readdirSync(path).forEach(function(file,index) {
+      var curPath = path + '/' + file;
+      if (fs.lstatSync(curPath).isDirectory()) { 
         deleteFolderRecursive(curPath);
-      } else { // delete file
+      } 
+      else {
         fs.unlinkSync(curPath);
       }
     });
@@ -82,5 +83,6 @@ glob(moduleDir + '/**/composer.json', {}, (err, files) => {
   
   if (packages) {
     installPackages(packages);
+    removeGit();
   }
 });
