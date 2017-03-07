@@ -1,6 +1,6 @@
 {
   "name": "install_module_dependencies",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Find and install module dependencies that aren't modules",
   "bin": {
     "install_module_dependencies": "./index.js"
