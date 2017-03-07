@@ -37,6 +37,8 @@ function installPackages(packages) {
     }
     console.log(`stdout: ${stdout}`);
     console.log(`stderr: ${stderr}`);
+
+    removeGit();
   });
 }
 
@@ -44,7 +46,8 @@ function removeGit() {
   var composerdir = root + '/vendor';
   glob(composerdir + '/**/.git', {}, (err, files) => {
     files.forEach((fn) => {
-     deleteFolderRecursive(fn);
+      console.log('deleting ' + fn);
+      deleteFolderRecursive(fn);
     });
   });
 }
@@ -83,6 +86,5 @@ glob(moduleDir + '/**/composer.json', {}, (err, files) => {
   
   if (packages) {
     installPackages(packages);
-    removeGit();
   }
 });
