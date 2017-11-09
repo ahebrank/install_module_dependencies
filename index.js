@@ -78,7 +78,7 @@ glob(moduleDir + '/**/composer.json', {}, (err, files) => {
           return (name.split('/')[0] != 'drupal');
         });
         packages = packages.concat(nonModuleNames.map((n) => {
-          return n + ':' + dependencies[n];
+          return '"' + n + ':' + dependencies[n] + '"';
         }));
       }
     }
