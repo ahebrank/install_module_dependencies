@@ -15,6 +15,10 @@ if ('moduledir' in argv) {
 } else {
   throw new Error('Need project module --moduledir specified.');
 }
+var list_only = false;
+if ('listonly' in argv) {
+  list_only = true;
+}
 
 // make sure package is a module
 function isModuleComposer(json) {
@@ -85,6 +89,13 @@ glob(moduleDir + '/**/composer.json', {}, (err, files) => {
   });
   
   if (packages) {
-    installPackages(packages);
+    if (list_only) {
+      console.log(packages.map((p) => {
+        return p.split(":")[0].replace(/['"]+/g, '');
+      }).join("\n"));
+    }
+    else {
+      installPackages(packages);
+    }
   }
 });
